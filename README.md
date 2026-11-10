@@ -1,6 +1,8 @@
 # Docarion CareGraph & Rovo Clinical Triage Copilot for Atlassian Forge
 
 Built for **Atlassian Codegeist 2026: Build with context. Ship with confidence.**
+- **Public Video Demo (`02:50`, 1080p HD):** [https://youtu.be/JWq5QaVyDd4](https://youtu.be/JWq5QaVyDd4)
+- **Atlassian Forge App ID:** `ari:cloud:ecosystem::app/8f4c9e21-6b14-4d9a-a7c3-2e5b9104d8c2`
 - **Primary Category:** Apps for Specialized Industries (**Healthcare**)
 - **Bonus Prizes Targeted:**
   1. **Best Agents — Rovo / Assignable Agents** (`rovo:agent` + 4 reusable `action` modules)
