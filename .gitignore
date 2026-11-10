@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+*.mp4
+video_build/*.mp3
+video_build/*.mp4
+video_build/raw_video
+._*
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts

@@ -1,0 +1,46 @@
+{
+  "voice": "aura-2-odysseus-en",
+  "total_duration": 169.53,
+  "scenes": [
+    {
+      "id": "scene_1_hospital_silos_and_overview",
+      "file": "/Volumes/External/Hackathons/docarion-forge-clinical-graph/video_build/audio_segments/scene_1_hospital_silos_and_overview.mp3",
+      "start": 0.0,
+      "duration": 47.418,
+      "end": 47.418,
+      "text": "In a modern hospital, critical patient alerts, laboratory panic values, and biomedical equipment faults happen every hour. Yet while incident tickets are tracked in Jira Service Management, the hospital's approved clinical protocols and postmortem reviews live separately in Confluence. During a medical emergency, clinicians can lose over forty minutes searching across disconnected tools. Meet Docarion CareGraph and our Rovo Clinical Triage Copilot, built on Atlassian Forge. CareGraph connects hospital escalation tickets, clinical protocols, biomedical devices, and on-call specialist teams into one unified Atlassian Teamwork Graph."
+    },
+    {
+      "id": "scene_2_jira_clinical_command_and_sop",
+      "file": "/Volumes/External/Hackathons/docarion-forge-clinical-graph/video_build/audio_segments/scene_2_jira_clinical_command_and_sop.mp3",
+      "start": 47.418,
+      "duration": 32.538,
+      "end": 79.956,
+      "text": "Here on the first tab is our Jira and Jira Service Management Clinical Command Center. We are looking at an urgent Intensive Care escalation for septic shock, with eleven minutes remaining on the service level agreement. With a single click, our assignable Rovo Agent audits the patient's severity score, elevates the ticket to top priority, and retrieves the exact hospital-approved sepsis protocol from Confluence\u2014attaching the five-step clinical checklist directly to the Jira ticket in eleven seconds."
+    },
+    {
+      "id": "scene_3_sbar_handoff_and_teamwork_graph",
+      "file": "/Volumes/External/Hackathons/docarion-forge-clinical-graph/video_build/audio_segments/scene_3_sbar_handoff_and_teamwork_graph.mp3",
+      "start": 79.956,
+      "duration": 31.098,
+      "end": 111.054,
+      "text": "Next, Rovo automatically generates a structured clinical handoff\u2014covering Situation, Background, Assessment, and Recommendation\u2014and pages the on-call Critical Care Rapid Response Team. Switching to Tab Two, the Atlassian Teamwork Graph Explorer visualizes how every entity is connected: linking the Jira incident to its governing Confluence protocol, the bedside infusion pump, the on-call specialist team, and the quality assurance review."
+    },
+    {
+      "id": "scene_4_rovo_studio_and_mcp_server",
+      "file": "/Volumes/External/Hackathons/docarion-forge-clinical-graph/video_build/audio_segments/scene_4_rovo_studio_and_mcp_server.mp3",
+      "start": 111.054,
+      "duration": 37.458,
+      "end": 148.512,
+      "text": "On Tab Three, clinicians and hospital engineers can interact directly with the Rovo Clinical Agent Studio and review the live execution log across septic shock, critical potassium lab alerts, neonatal incubator failovers, and pharmacy cold-chain excursions. On Tab Four, our Atlassian Forge Model Context Protocol server exposes five clinical tools over JSON-RPC, while our built-in privacy guard automatically redacts patient names, phone numbers, and identifiers before any data touches Jira or Confluence."
+    },
+    {
+      "id": "scene_5_forge_manifest_and_capa_closing",
+      "file": "/Volumes/External/Hackathons/docarion-forge-clinical-graph/video_build/audio_segments/scene_5_forge_manifest_and_capa_closing.mp3",
+      "start": 148.512,
+      "duration": 21.018,
+      "end": 169.53,
+      "text": "Finally, on Tab Five, Rovo drafts a complete Confluence Corrective and Preventive Action postmortem page so hospital quality teams can prevent future delays. Docarion CareGraph turns connected Atlassian context into faster, safer patient care. Thank you for watching."
+    }
+  ]
+}

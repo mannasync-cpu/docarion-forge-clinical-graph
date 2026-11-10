@@ -1,0 +1,5 @@
+file '/Volumes/External/Hackathons/docarion-forge-clinical-graph/video_build/audio_segments/scene_1_hospital_silos_and_overview.mp3'
+file '/Volumes/External/Hackathons/docarion-forge-clinical-graph/video_build/audio_segments/scene_2_jira_clinical_command_and_sop.mp3'
+file '/Volumes/External/Hackathons/docarion-forge-clinical-graph/video_build/audio_segments/scene_3_sbar_handoff_and_teamwork_graph.mp3'
+file '/Volumes/External/Hackathons/docarion-forge-clinical-graph/video_build/audio_segments/scene_4_rovo_studio_and_mcp_server.mp3'
+file '/Volumes/External/Hackathons/docarion-forge-clinical-graph/video_build/audio_segments/scene_5_forge_manifest_and_capa_closing.mp3'

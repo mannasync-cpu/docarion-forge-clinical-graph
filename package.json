@@ -1,0 +1,30 @@
+{
+  "name": "docarion-forge-clinical-graph",
+  "version": "1.0.0",
+  "private": false,
+  "license": "MIT",
+  "description": "Docarion CareGraph & Rovo Clinical Triage Copilot for Atlassian Forge — Healthcare Teamwork Graph, Assignable Rovo Agent & Atlassian MCP Server",
+  "scripts": {
+    "dev": "next dev -p 3097",
+    "build": "next build",
+    "start": "next start -p 3097",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "lucide-react": "^0.454.0",
+    "next": "14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.3",
+    "vitest": "^2.1.8"
+  }
+}

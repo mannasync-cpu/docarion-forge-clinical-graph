@@ -1,0 +1,147 @@
+modules:
+  jira:issuePanel:
+    - key: docarion-clinical-context-panel
+      resource: custom-ui-workbench
+      resolver:
+        function: main-resolver
+      viewportSize: large
+      title: Docarion CareGraph — Clinical Acuity, SOP & SBAR Triage
+      icon: https://developer.atlassian.com/platform/forge/images/icons/issue-panel-icon.svg
+
+  jiraServiceManagement:queuePage:
+    - key: docarion-jsm-clinical-command
+      resource: custom-ui-workbench
+      resolver:
+        function: main-resolver
+      title: Hospital Clinical Escalation & Biomedical Command Center
+
+  confluence:contentBylineItem:
+    - key: docarion-sop-governance-badge
+      resource: custom-ui-workbench
+      resolver:
+        function: main-resolver
+      title: Docarion Clinical SOP & CAPA Verification
+
+  rovo:agent:
+    - key: docarion-clinical-triage-agent
+      name: Docarion Clinical Triage & Safety Copilot
+      description: >
+        Assignable Healthcare Rovo Agent that connects Jira Service Management clinical incidents,
+        NEWS2 physiological acuity scores, biomedical asset telemetry, and Confluence Clinical SOP
+        runbooks via Atlassian Teamwork Graph.
+      prompt: >
+        You are the Docarion Clinical Triage & Safety Copilot running on Atlassian Forge.
+        When an on-call clinician, nursing supervisor, or biomedical engineer opens a Jira or
+        Jira Service Management incident, always:
+        1. Inspect the de-identified NEWS2 acuity score, lab critical threshold, or cold-chain telemetry.
+        2. Query the Atlassian Teamwork Graph to match the exact hospital-approved Confluence Clinical SOP.
+        3. Evaluate SLA breach risk and escalate Priority to P1 Critical if NEWS2 >= 7 or lab panic threshold is met.
+        4. Generate a structured SBAR (Situation, Background, Assessment, Recommendation) clinical handoff
+           and draft a compliant Confluence CAPA postmortem page.
+        Never expose raw patient PII/PHI; enforce HIPAA Safe Harbor and NDPR de-identification tokens.
+      conversationStarters:
+        - Audit NEWS2 acuity & SLA risk for the active hospital incident
+        - Attach the matching Confluence Clinical SOP checklist to this Jira ticket
+        - Generate a structured SBAR specialist handoff and assign the on-call team
+        - Draft a Confluence CAPA root-cause postmortem linked in Teamwork Graph
+      actions:
+        - audit-clinical-sla-and-news2
+        - match-confluence-clinical-sop
+        - dispatch-oncall-sbar-handoff
+        - generate-confluence-capa-postmortem
+
+  action:
+    - key: audit-clinical-sla-and-news2
+      name: Audit Clinical Acuity (NEWS2) & JSM SLA Risk
+      function: rovoAuditClinicalSla
+      actionVerb: GET
+      description: Evaluates patient NEWS2 acuity or biomedical fault severity against Jira Service Management SLA timers.
+      inputs:
+        issueKey:
+          title: Jira Issue Key
+          type: string
+          required: true
+          description: The Jira / JSM issue key (e.g., HOSP-401, BIO-118, LAB-892)
+
+    - key: match-confluence-clinical-sop
+      name: Match & Attach Confluence Clinical SOP Runbook
+      function: rovoMatchConfluenceSop
+      actionVerb: UPDATE
+      description: Queries Atlassian Teamwork Graph for the hospital-approved Confluence SOP protocol and attaches its checklist to Jira.
+      inputs:
+        issueKey:
+          title: Jira Issue Key
+          type: string
+          required: true
+          description: The Jira / JSM issue key to attach the Confluence SOP checklist to
+
+    - key: dispatch-oncall-sbar-handoff
+      name: Dispatch On-Call Specialist & Post SBAR Handoff
+      function: rovoDispatchSbarHandoff
+      actionVerb: UPDATE
+      description: Generates an SBAR clinical handoff comment and assigns the on-call specialty care team in Jira Service Management.
+      inputs:
+        issueKey:
+          title: Jira Issue Key
+          type: string
+          required: true
+          description: The Jira / JSM issue key
+
+    - key: generate-confluence-capa-postmortem
+      name: Generate Confluence CAPA Root-Cause Postmortem
+      function: rovoGenerateCapaPostmortem
+      actionVerb: CREATE
+      description: Creates a structured Confluence CAPA (Corrective and Preventive Action) page linked to the Jira incident in Teamwork Graph.
+      inputs:
+        issueKey:
+          title: Jira Issue Key
+          type: string
+          required: true
+          description: The Jira / JSM issue key
+
+  graph:connector:
+    - key: docarion-clinical-teamwork-graph
+      name: Docarion Hospital Clinical & Biomedical Teamwork Graph Connector
+      function: syncClinicalTeamworkGraph
+      entityTypes:
+        - docarion:clinical-incident
+        - docarion:clinical-sop-runbook
+        - docarion:biomedical-asset
+        - docarion:oncall-care-team
+
+  webtrigger:
+    - key: docarion-mcp-endpoint
+      function: handleAtlassianMcpRequest
+
+  function:
+    - key: main-resolver
+      handler: index.resolverHandler
+    - key: rovoAuditClinicalSla
+      handler: index.rovoAuditClinicalSla
+    - key: rovoMatchConfluenceSop
+      handler: index.rovoMatchConfluenceSop
+    - key: rovoDispatchSbarHandoff
+      handler: index.rovoDispatchSbarHandoff
+    - key: rovoGenerateCapaPostmortem
+      handler: index.rovoGenerateCapaPostmortem
+    - key: syncClinicalTeamworkGraph
+      handler: index.syncClinicalTeamworkGraph
+    - key: handleAtlassianMcpRequest
+      handler: index.handleAtlassianMcpRequest
+
+resources:
+  - key: custom-ui-workbench
+    path: static/out
+
+permissions:
+  scopes:
+    - read:jira-work
+    - write:jira-work
+    - read:confluence-content.all
+    - write:confluence-content
+    - storage:app
+
+app:
+  runtime:
+    name: nodejs20.x
+  id: ari:cloud:ecosystem::app/8f4c9e21-6b14-4d9a-a7c3-2e5b9104d8c2
